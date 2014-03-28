@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <script type="application/javascript">
+    function draw() {
+      var canvas = document.getElementById("pong");
+      if (canvas.getContext) {
+        var ctx = canvas.getContext("2d");
+		var y = 10
+		var xctx = 90
+		var yctx = 50
+		ctx.strokeRect(850,10,30,130);
+       
+		var intervalID = window.setInterval(ctxMove, 30)
+		intervalID;
+		var forwards = true;
+		var down = true;
+		ctx.fillRect(10,y,30,130);
+		function ctxMove(){
+		ctx.clearRect(60,0,780,900);
+		
+		
+		if (xctx <850 && forwards && yctx < 870 && down){
+		xctx += 10;
+		yctx += 3;
+		} //ctx moves right and down
+		else if (xctx <850 && forwards && yctx >20 ){
+		xctx += 10;
+		yctx -= 3;
+		down = false;
+		
+		} //ctx moves right and up
+		
+		
+		else if(xctx > 20 && yctx <850 && down) { 
+		forwards = false;
+		xctx -= 10;
+		yctx += 3;
+		}// ctx moves up and left
+		
+		else if(xctx > 20 ) { 
+		down = false
+		xctx -= 10;
+		yctx -= 3;
+		}// down and left
+		else if (xctx <850 && forwards === false && yctx >20 && down === false){
+		xctx += 10;
+		yctx -= 3;
+		down = false;
+		}
+		else if (xctx < 870 && down  ){
+		forwards = true;
+		xctx +=10;
+		yctx -=3;
+		}
+		else if(forwards === false && down === false){
+		forward = true;
+		xctx += 10;
+		yctx -= 3;
+		}
+		
+		
+		
+		 ctx.arc(xctx,yctx,100,0, Math.PI * 2,true);
+		 ctx.stroke();
+		 
+		}
+		window.onkeydown = function(e) {
+   var key = e.keyCode ? e.keyCode : e.which;
+
+   if (key == 40 && y <770) {
+      
+		ctx.fillRect(10,y+10,30,130);
+		y=y+10
+		ctx.clearRect(9,y-11,33,10);
+		console.log("working");
+		
+		}
+	if (key == 38 && y > 0  ) {
+		ctx.fillRect(10,y-10,30,130);
+		y=y-10
+		ctx.clearRect(9,y+131,33,10);
+		}
+		
+		
+      }
+    }
+}
+	
+  </script>
+   <style type="text/css">
+      canvas { border: 1px solid black; }
+    </style>
+ </head>
+ <body onload="draw();">
+   <canvas id="pong" width="900" height="900"></canvas>
+ </body>
+</html>
