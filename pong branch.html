@@ -7,8 +7,8 @@
       if (canvas.getContext) {
         var ctx = canvas.getContext("2d");
 		var y = 10
-		var xctx = 90
-		var yctx = 50
+		var xball = 90
+		var yball = 50
 		ctx.strokeRect(850,10,30,130);
        
 		var intervalID = window.setInterval(ctxMove, 30)
@@ -20,48 +20,48 @@
 		ctx.clearRect(60,0,780,900);
 		
 		
-		if (xctx <850 && forwards && yctx < 870 && down){
-		xctx += 10;
-		yctx += 3;
+		if (xball <850 && forwards && yball < 870 && down){
+		xball += 10;
+		yball += 3;
 		} //ctx moves right and down
-		else if (xctx <850 && forwards && yctx >20 ){
-		xctx += 10;
-		yctx -= 3;
+		else if (xball <850 && forwards && yball >20 ){
+		xball += 10;
+		yball -= 3;
 		down = false;
 		
 		} //ctx moves right and up
 		
 		
-		else if(xctx > 20 && yctx <850 && down) { 
+		else if(xball > 20 && yball <850 && down) { 
 		forwards = false;
-		xctx -= 10;
-		yctx += 3;
+		xball -= 10;
+		yball += 3;
 		}// ctx moves up and left
 		
-		else if(xctx > 20 ) { 
+		else if(xball > 20 ) { 
 		down = false
-		xctx -= 10;
-		yctx -= 3;
+		xball -= 10;
+		yball -= 3;
 		}// down and left
-		else if (xctx <850 && forwards === false && yctx >20 && down === false){
-		xctx += 10;
-		yctx -= 3;
+		else if (xball <850 && forwards === false && yball >20 && down === false){
+		xball += 10;
+		yball -= 3;
 		down = false;
 		}
-		else if (xctx < 870 && down  ){
+		else if (xball < 870 && down  ){
 		forwards = true;
-		xctx +=10;
-		yctx -=3;
+		xball +=10;
+		yball -=3;
 		}
 		else if(forwards === false && down === false){
 		forward = true;
-		xctx += 10;
-		yctx -= 3;
+		xball += 10;
+		yball -= 3;
 		}
 		
 		
 		
-		 ctx.arc(xctx,yctx,100,0, Math.PI * 2,true);
+		 ctx.arc(xball,yball,30,0, Math.PI * 2,true);
 		 ctx.stroke();
 		 
 		}
