@@ -3,89 +3,76 @@
  <head>
   <script type="application/javascript">
     function draw() {
-      var canvas = document.getElementById("pong");
-      if (canvas.getContext) {
-        var ctx = canvas.getContext("2d");
+		var canvas = document.getElementById("pong");
+		var ctx = canvas.getContext("2d");
 		var y = 10
 		var xball = 90
 		var yball = 50
 		ctx.strokeRect(850,10,30,130);
-       
 		var intervalID = window.setInterval(ctxMove, 30)
 		intervalID;
 		var forwards = true;
 		var down = true;
 		ctx.fillRect(10,y,30,130);
 		function ctxMove(){
-		ctx.clearRect(60,0,780,900);
-		
-		
-		if (xball <850 && forwards && yball < 870 && down){
-		xball += 10;
-		yball += 3;
-		} //ctx moves right and down
-		else if (xball <850 && forwards && yball >20 ){
-		xball += 10;
-		yball -= 3;
-		down = false;
-		
-		} //ctx moves right and up
-		
-		
-		else if(xball > 20 && yball <850 && down) { 
-		forwards = false;
-		xball -= 10;
-		yball += 3;
-		}// ctx moves up and left
-		
-		else if(xball > 20 ) { 
-		down = false
-		xball -= 10;
-		yball -= 3;
-		}// down and left
-		else if (xball <850 && forwards === false && yball >20 && down === false){
-		xball += 10;
-		yball -= 3;
-		down = false;
-		}
-		else if (xball < 870 && down  ){
-		forwards = true;
-		xball +=10;
-		yball -=3;
-		}
-		else if(forwards === false && down === false){
-		forward = true;
-		xball += 10;
-		yball -= 3;
-		}
-		
-		
-		
-		 ctx.arc(xball,yball,30,0, Math.PI * 2,true);
-		 ctx.stroke();
-		 
+			ctx.clearRect(60,0,780,900);
+			if (xball <850 && forwards && yball < 870 && down){
+				xball += 10;
+				yball += 3;
+			} //ctx moves right and down
+			else if (xball <850 && forwards && yball >20 ){
+				xball += 10;
+				yball -= 3;
+				down = false;
+			} //ctx moves right and up
+			else if(xball > 20 && yball <850 && down) { 
+				forwards = false;
+				xball -= 10;
+				yball += 3;
+			}// ctx moves up and left
+			else if(xball > 20 ) { 
+				down = false
+				xball -= 10;
+				yball -= 3;
+			}// down and left
+			else if (xball <850 && forwards === false && yball >20 && down === false){
+				xball += 10;
+				yball -= 3;
+				down = false;
+			}
+			else if (xball < 870 && down  ){
+				forwards = true;
+				xball +=10;
+				yball -=3;
+			}
+			else if(forwards === false && down === false){
+				forward = true;
+				xball += 10;
+				yball -= 3;
+			}
+			 ctx.arc(xball,yball,30,0, Math.PI * 2,true);
+			 ctx.stroke();
+			 
 		}
 		window.onkeydown = function(e) {
-   var key = e.keyCode ? e.keyCode : e.which;
+			var key = e.keyCode ? e.keyCode : e.which;
 
-   if (key == 40 && y <770) {
+			if (key == 40 && y <770) {
       
-		ctx.fillRect(10,y+10,30,130);
-		y=y+10
-		ctx.clearRect(9,y-11,33,10);
-		console.log("working");
+				ctx.fillRect(10,y+10,30,130);
+				y=y+10
+				ctx.clearRect(9,y-11,33,10);
+			}
+			if (key == 38 && y > 0  ) {
+				ctx.fillRect(10,y-10,30,130);
+				y=y-10
+				ctx.clearRect(9,y+131,33,10);
+			}
+		
 		
 		}
-	if (key == 38 && y > 0  ) {
-		ctx.fillRect(10,y-10,30,130);
-		y=y-10
-		ctx.clearRect(9,y+131,33,10);
-		}
-		
-		
-      }
     }
-}
+
 	
   </script>
    <style type="text/css">
