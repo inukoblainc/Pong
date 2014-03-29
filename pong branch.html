@@ -8,7 +8,7 @@
 		var y = 10
 		var xball = 90
 		var yball = 50
-		ctx.strokeRect(850,10,30,130);
+		
 		var intervalID = window.setInterval(ctxMove, 30)
 		var xvel = 3;
 		var yvel = 10;
@@ -28,26 +28,49 @@
 			if (yball <= 30){
 				yvel = 10;
 			}
+			if (up === true && y <770){
+				y=y+10;
+			}
+			if (down === true && y > -10  ){
+				y=y-10;
+			}
 			
 			ctx.beginPath();
 			ctx.clearRect(0,0,900,900);
 			ctx.arc(xball,yball,30,0, Math.PI * 2,true);
 			ctx.stroke();
+			ctx.fillRect(10,y+10,30,130);
+			ctx.strokeRect(850,10,30,130);
+		
 		}
-		window.onkeydown = function(e) {
+		var up = false;
+		var down = false;
+		
+		window.onkeydown  = function(e) {
 			var key = e.which 
 
-			if (key == 40 && y <770) {
-      
-				ctx.fillRect(10,y+10,30,130);
-				y=y+10
-				ctx.clearRect(9,y-11,33,10);
+			if (key == 40) {
+				
+				up = true;
 			}
-			if (key == 38 && y > 0  ) {
-				ctx.fillRect(10,y-10,30,130);
-				y=y-10
-				ctx.clearRect(9,y+131,33,10);
+			if (key == 38 ) {
+				
+				down = true;
 			}
+		}
+		window.onkeyup = function(e) {
+			var key = e.which 
+
+			if (key == 40) {
+				
+				up = false;
+			}
+			if (key == 38) {
+				
+				down = false;
+			}
+			
+		
 		
 		
 		}
