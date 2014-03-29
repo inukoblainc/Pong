@@ -10,52 +10,32 @@
 		var yball = 50
 		ctx.strokeRect(850,10,30,130);
 		var intervalID = window.setInterval(ctxMove, 30)
-		intervalID;
-		var forwards = true;
-		var down = true;
+		var xvel = 3;
+		var yvel = 10;
 		ctx.fillRect(10,y,30,130);
 		function ctxMove(){
-			ctx.clearRect(60,0,780,900);
-			if (xball <850 && forwards && yball < 870 && down){
-				xball += 10;
-				yball += 3;
-			} //ctx moves right and down
-			else if (xball <850 && forwards && yball >20 ){
-				xball += 10;
-				yball -= 3;
-				down = false;
-			} //ctx moves right and up
-			else if(xball > 20 && yball <850 && down) { 
-				forwards = false;
-				xball -= 10;
-				yball += 3;
-			}// ctx moves up and left
-			else if(xball > 20 ) { 
-				down = false
-				xball -= 10;
-				yball -= 3;
-			}// down and left
-			else if (xball <850 && forwards === false && yball >20 && down === false){
-				xball += 10;
-				yball -= 3;
-				down = false;
+			xball += xvel;
+			yball += yvel;
+			if (xball >=870){
+				xvel = -3;
 			}
-			else if (xball < 870 && down  ){
-				forwards = true;
-				xball +=10;
-				yball -=3;
+			if (xball <=30){
+				xvel = 3;
 			}
-			else if(forwards === false && down === false){
-				forward = true;
-				xball += 10;
-				yball -= 3;
+			if (yball >= 870){
+				yvel = -10;
 			}
-			 ctx.arc(xball,yball,30,0, Math.PI * 2,true);
-			 ctx.stroke();
-			 
+			if (yball <= 30){
+				yvel = 10;
+			}
+			
+			ctx.beginPath();
+			ctx.clearRect(0,0,900,900);
+			ctx.arc(xball,yball,30,0, Math.PI * 2,true);
+			ctx.stroke();
 		}
 		window.onkeydown = function(e) {
-			var key = e.keyCode ? e.keyCode : e.which;
+			var key = e.which 
 
 			if (key == 40 && y <770) {
       
