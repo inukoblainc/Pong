@@ -5,24 +5,34 @@
     function draw() {
 		var canvas = document.getElementById("pong");
 		var ctx = canvas.getContext("2d");
-		var y = 10
-		var xball = 90
-		var yball = 50
-		var compy = 10
+		var y = 10;
+		var xball = 90;
+		var yball = 50;
+		var compy = 10;
+		var scorecomp = 0;
+		var score = 0
 		
 		var intervalID = window.setInterval(ctxMove, 30)
 		var xvel = 3;
 		var yvel = 10;
-		ctx.fillRect(10,y,30,130);
 		function ctxMove(){
 			xball += xvel;
 			yball += yvel;
 			if (xball >=870){
 				xvel = -3;
 			}
-			if (xball <=30){
+			if (xball <=60 &&  85 > Math.abs((y+65)-yball)){
 				xvel = 3;
 			}
+			if (xball < 45){
+				xvel = 3;
+				yvel = 10;
+				xball = 90;
+				yball = 50;
+				scorecomp = scorecomp+1;
+				
+			}
+			
 			if (yball >= 870){
 				yvel = -10;
 			}
@@ -41,7 +51,8 @@
 			if (yball < compy){
 				compy=compy-9;
 			}
-			
+			ctx.font="20px Arial";
+			ctx.fillText("Score =" + score +"-" + scorecomp,100,100);
 			ctx.beginPath();
 			ctx.clearRect(0,0,900,900);
 			ctx.arc(xball,yball,30,0, Math.PI * 2,true);
