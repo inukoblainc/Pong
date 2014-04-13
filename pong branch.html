@@ -8,6 +8,7 @@
 		var y = 10
 		var xball = 90
 		var yball = 50
+		var compy = 10
 		
 		var intervalID = window.setInterval(ctxMove, 30)
 		var xvel = 3;
@@ -34,13 +35,19 @@
 			if (down === true && y > -10  ){
 				y=y-10;
 			}
+			if (yball > compy){
+				compy=compy+9;
+			}
+			if (yball < compy){
+				compy=compy-9;
+			}
 			
 			ctx.beginPath();
 			ctx.clearRect(0,0,900,900);
 			ctx.arc(xball,yball,30,0, Math.PI * 2,true);
 			ctx.stroke();
 			ctx.fillRect(10,y+10,30,130);
-			ctx.strokeRect(850,10,30,130);
+			ctx.strokeRect(850,compy,30,130);
 		
 		}
 		var up = false;
