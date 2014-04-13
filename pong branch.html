@@ -13,19 +13,36 @@
 		var score = 0
 		
 		var intervalID = window.setInterval(ctxMove, 30)
-		var xvel = 3;
+		var xvel = 4;
 		var yvel = 10;
 		function ctxMove(){
+		
 			xball += xvel;
 			yball += yvel;
-			if (xball >=870){
-				xvel = -3;
+			if (xball >=825 && 85 > Math.abs((compy+65)-yball)){
+			
+				var rand = Math.random() *10;
+				var yrand  = Math.random() *24;
+				yvel = -8+ yrand
+				xvel = -8-Math.floor(rand);
+				
+				
 			}
 			if (xball <=60 &&  85 > Math.abs((y+65)-yball)){
-				xvel = 3;
+				var rand = Math.random() *10;
+				var yrand  = Math.random() *24;
+				yvel = -8+ yrand
+				xvel = +8+Math.floor(rand);
+			}
+			if (xball > 840){
+				xvel = 4;
+				yvel = 10;
+				xball = 90;
+				yball = 50;
+				score = score+1;
 			}
 			if (xball < 45){
-				xvel = 3;
+				xvel = 4;
 				yvel = 10;
 				xball = 90;
 				yball = 50;
@@ -34,10 +51,10 @@
 			}
 			
 			if (yball >= 870){
-				yvel = -10;
+				yvel = -yvel;
 			}
 			if (yball <= 30){
-				yvel = 10;
+				yvel = -yvel;
 			}
 			if (up === true && y <770){
 				y=y+10;
@@ -46,15 +63,15 @@
 				y=y-10;
 			}
 			if (yball > compy){
-				compy=compy+9;
+				compy=compy + 9;
 			}
 			if (yball < compy){
 				compy=compy-9;
 			}
-			ctx.font="20px Arial";
-			ctx.fillText("Score =" + score +"-" + scorecomp,100,100);
-			ctx.beginPath();
 			ctx.clearRect(0,0,900,900);
+			ctx.beginPath();
+			ctx.font="50px Georgia";
+			ctx.fillText("Score = " + score +" - " + scorecomp,100,60);
 			ctx.arc(xball,yball,30,0, Math.PI * 2,true);
 			ctx.stroke();
 			ctx.fillRect(10,y+10,30,130);
